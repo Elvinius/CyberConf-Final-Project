@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<?php require_once '../backend/session.php'; ?>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Elvin Abbasli, Seho Tanaka">
+    <meta name="keywords" content="CyberConf, conferences, IT events, Cyber Security">
+    <meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">
+    <title>CyberConf 2020 | Register</title>
+    <link rel="icon" href="../images/logo-secondv.png" sizes="48x48" type="image/png">
+    <!-- to add the image to the title bar -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> <!-- bootstrap link -->
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+    <script src="https://kit.fontawesome.com/942ca677f7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a href="index.html">
+            <img id="logo-img" src="../images/logo-secondv.png" width="30" height="30" alt="CyberConf Logo">
+        </a>
+        <a class="navbar-brand" href="index.html">
+            <h1>CyberConf 2020</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ml-4" id="navbarNav">
+            <ul class="navbar-nav nav ml-xl-5">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                    <!-- aims to hide an element to all devices except screen readers with .sr-only.  -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <?php
+                $profile = "<li class='nav-item'><a class='nav-link' href='profile.html'>Profile</a></li>";
+                if (isset($_SESSION["HOST_SESSION"])) {
+                    echo $profile;
+                }
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="schedules.html">Schedules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.html">Tickets</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Register<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link contact" href="contact.html">Contact</a>
+                </li>
+
+                <!-- Modal -->
+                <div>
+                    <a href="" class="btn btn-info btn-rounded ml-xl-5" data-toggle="modal"
+                       data-target="#elegantModalForm">Sign in</a>
+                </div>
+            </ul>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content form-elegant">
+                    <!--Header-->
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title w-100 text-dark font-weight-bold my-3" id="myModalLabel"><strong>Sign
+                                in</strong></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body page-signin mx-4">
+                        <!--Body-->
+                        <form class="text-dark" action="../backend/signin.php" method="post">
+                            <div class="md-form mb-5 form-group">
+                                <input type="email" name="email" id="Form-email1" class="form-control validate" required
+                                       aria-required="true" aria-invalid="false">
+                                <label data-error="wrong" data-success="right" for="Form-email1">Your email</label>
+                            </div>
+                            <div class="md-form pb-3 form-group">
+                                <input type="password" name="password" id="Form-pass1" class="form-control validate"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,64}$"
+                                       required aria-required="true" aria-invalid="false">
+                                <label data-error="wrong" data-success="right" for="Form-pass1">Your password</label>
+                            </div>
+                            <div class="text-center mb-3">
+                                <button type="submit" id="signin-button"
+                                        class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer mx-7 pt-3 mb-1">
+                        <p class="font-small text-dark d-flex justify-content-end">Not a member? <a href="register.html"
+                                                                                                    class="blue-text ml-1">Register</a>
+                        </p>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </nav>
+</header>
+<?php if ($_COOKIE["_rsmg"]=='819fa78f231b7b22d9f71d946351e1fe') {
+    echo "<div class='alert alert-danger alert-dismissible fade show ' role='alert'>
+            <strong>Something went wrong! Please try again!</strong>
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>";
+    unset($_COOKIE["_rsmg"]);
+    setcookie('_rsmg', '819fa78f231b7b22d9f71d946351e1fe', time() - 10);
+}
+?>
+<h1 class="text-center text-white mt-5"> Sign up</h1>
+<main class="main-area">
+    <div id="form-container">
+        <form method="POST" action="../backend/register.php">
+            <h5 class=" mb-3">Use the following form to register</h5>
+            <input type="text" name="full_name" placeholder="Full name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <div class="input-group">
+                <input type="password" name="password" 
+                pattern="(?=.(a-z)"
+                id="register-password" placeholder="Password" required>
+                <span class="fa fa-question-circle fa-lg mt-4" id="password-text" data-toggle="popover"
+                      data-container="body" data-html="true"
+                      data-title="<span class='text-dark'>Password requirements</span>"
+                      data-content="<div class='text-center text-dark one-car'>Password must contain at least one lowercase, one uppercase letter, and one number.</div>"
+                      data-trigger="hover"</span>
+            </div>
+            <label for="birthdate">Birthdate</label>
+            <input type="date" name="birthdate" value="2000-01-01" min="1970-01-01" max="2018-12-31">
+            <label for="gender">Select your gender</label>
+            <select class="select-css" name="gender">
+                <option disabled selected value> -- Gender --</option>
+                <option name="gender" value="Male">Male ♂</option>
+                <option name="gender" value="Female">Female ♀</option>
+                <option name="gender" value="Non-binary">Non-binary</option>
+            </select>
+            <label for="country">Select your country</label>
+            <select id="country" name="country" class="select-css">
+                <option disabled selected value> -- Country --</option>
+                <!--To add the the array of countries and loop them inside the option tag -->
+                <?php
+                $countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+                foreach ($countries as $value) {
+                    echo "<option name='country' value='$value'>$value</option> <br>";
+                }
+                ?>
+            </select>
+            <label for="gender">Select your education</label>
+            <select class="select-css" name="education">
+                <option disabled selected value> -- Education Level --</option>
+                <option name="education" value="Master's Degree">Master's Degree</option>
+                <option name="education" value="Bachelor's Degree">Bachelor's Degree</option>
+            </select>
+            <label for="occupation">Select your occupation</label>
+            <select class="select-css" name="occupation">
+                <option disabled selected value> -- Occupation --</option>
+                <!--To add the the array of professions and loop them inside the option tag -->
+                <?php
+                $occupations = array("Cyber Security Specialist", "Software Engineer", "Network Administrator", "System Administrator", "Penetration Tester", "Web Developer", "Student", "Teacher", "Software Architect", "Other");
+                foreach ($occupations as $value) {
+                    echo "<option name='occupation' value='$value'>$value</option><br>";
+                }
+                ?>
+            </select>
+            <input type="Submit" class="btn registration-submit" value="Submit">
+        </form>
+    </div>
+</main>
+<footer class="page-footer">
+    <div id="contact-info">
+        <div class="container ">
+            <div class="row pt-3">
+                <section id="hours" class="col-sm-4">
+                    <h5>Hours:</h5>
+                    Monday-Thurs: 10:00am - 08:00pm<br>
+                    Fri: 11:00am - 4:30pm<br>
+                    Saturday and Sunday Closed
+                    <hr class="visible-xs">
+                </section>
+                <section id="address" class="col-sm-4">
+                    <h5>Venue:</h5>
+                    5 Akadeemia Road<br>
+                    Tallinn, 12611
+                    <p><span id="additional-contact-info">* You can take trolley number 3 from the city centre or
+                                bus number 11 (the stop is Keemia).</span>
+                    </p>
+                    <hr class="visible-xs">
+                </section>
+                <section id="contact" class="col-sm-4">
+                    <h5>Contact:</h5>
+                    <p>Send us <a
+                                href="mailto:abelvi@ttu.ee?cc=setana@taltech.ee&subject=CyberConf%202020">email</a> or
+                        call us via +372 5845 6759.</p>
+                    <hr class="visible-xs">
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="col-md-6 text-sm-center mb-sm-3 mt-3 float-left copyright" style="background-size: cover;">
+            &copy;
+            Copyright CyberConf 2020
+        </div>
+        <div class="col-md-6 text-right text-sm-center float-right mt-md-3 mb-sm-3" style="background-size: cover;">
+            <div class="social-icons text-dark ">
+                <a href="">
+                    <i class="fab fa-facebook fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-instagram-square fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/register.js"></script>
+<script src="../js/signin.js"></script> <!-- Link to the Vanilla JS file to clear the signin input modal -->
+</body>
+
+</html>

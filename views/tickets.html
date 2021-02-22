@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<?php require_once '../backend/session.php';
+?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Elvin Abbasli, Seho Tanaka">
+    <meta name="keywords" content="CyberConf, conferences, IT events, Cyber Security">
+    <meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">
+    <title>CyberConf 2020 | Tickets</title>
+    <link rel="icon" href="../images/logo-secondv.png" sizes="48x48" type="image/png">
+    <!-- to add the image to the title bar -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> <!-- bootstrap link -->
+    <link rel="stylesheet" type="text/css" href="../css/tickets.css"> <!-- Link to the tickets.css -->
+    <script src="https://kit.fontawesome.com/942ca677f7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a href="index.html">
+            <img id="logo-img" src="../images/logo-secondv.png" width="30" height="30" alt="CyberConf Logo">
+        </a>
+        <a class="navbar-brand" href="index.html">
+            <h1>CyberConf 2020</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ml-4" id="navbarNav">
+            <ul class="navbar-nav nav ml-xl-5">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <?php
+                $profile = "<li class='nav-item'><a class='nav-link' href='profile.html'>Profile</a></li>";
+                if (isset($_SESSION["HOST_SESSION"])) {
+                    echo $profile;
+                }
+                ?>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="schedules.html">Schedules</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Tickets<span class="sr-only">(current)</span></a>
+                    <!-- aims to hide an element to all devices except screen readers with .sr-only.  -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link contact" href="contact.html">Contact</a>
+                </li>
+                <?php
+
+                $signin = "<div><a class='btn btn-info btn-rounded ml-xl-5' data-toggle='modal' data-target='#elegantModalForm'>Sign in</a></div>";
+                $logout = "<div><a href='../backend/logout.php' class='btn btn-info btn-rounded ml-xl-5' >Log out</a></div>";
+
+                if (isset($_SESSION["HOST_SESSION"])) {
+                    echo $logout;
+                } else {
+                    echo $signin;
+                }
+                ?>
+                <!-- Modal -->
+            </ul>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content form-elegant">
+                    <!--Header-->
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title w-100 text-dark font-weight-bold my-3" id="myModalLabel"><strong>Sign
+                                in</strong></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body page-signin mx-4">
+                        <!--Body-->
+                        <form class="text-dark" action="../backend/signin.php" method="post">
+                            <div class="md-form mb-5 form-group">
+                                <input type="email" name="email" id="Form-email1" class="form-control validate" required
+                                       aria-required="true" aria-invalid="false">
+                                <label data-error="wrong" data-success="right" for="Form-email1">Your email</label>
+                            </div>
+                            <div class="md-form pb-3 form-group">
+                                <input type="password" name="password" id="Form-pass1" class="form-control validate"
+                                       required aria-required="true" aria-invalid="false">
+                                <label data-error="wrong" data-success="right" for="Form-pass1">Your password</label>
+                            </div>
+                            <div class="text-center mb-3">
+                                <button type="submit" id="signin-button"
+                                        class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer mx-7 pt-3 mb-1">
+                        <p class="font-small text-dark d-flex justify-content-end">Not a member? <a href="register.html"
+                                                                                                    class="blue-text ml-1">Register</a>
+                        </p>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="tickets container-fluid mt-5 mb-5">
+        <h1 class="text-center pb-2">Tickets</h1>
+        <div class="card-deck mb-3 text-center">
+            <div class="card shadow-sm">
+                <div class="card-header"><h4>Early Bird</h4></div>
+                <div class="card-body">
+                    <h2 class="card-title mt-3 mb-5">&euro; 50</h2>
+                    <p class="card-text">This ticket type is intended for the early attendees.</p>
+                    <button type='button' class='btn btn-lg btn-block btn-outline-primary' data-toggle='modal'
+                            data-target='#paymentModal'>Buy Tickets
+                    </button>
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-header"><h4>Regular Bird</h4></div>
+                <div class="card-body">
+                    <h2 class="card-title mt-3 mb-5">&euro; 100</h2>
+                    <p class="card-text">This ticket type is intended for the regular attendees.</p>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" data-toggle="modal"
+                            data-target="#paymentModal">Buy Tickets
+                    </button>
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-header"><h4>Late Bird</h4></div>
+                <div class="card-body">
+                    <h2 class="card-title mt-3 mb-5">&euro; 150</h2>
+                    <p class="card-text">This ticket type is intended for the late attendees.</p>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" data-toggle="modal"
+                            data-target="#paymentModal">Buy Tickets
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap payment modal form -->
+        <div class="modal fade text-dark" id="paymentModal" tabindex="-1" role="dialog"
+             aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-light">
+                        <h5 class="modal-title" id="paymentModalLabel">Payment details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-light">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body conference-ticket-payment">
+                        <form action="../backend/buy_ticket.php" method="post" novalidate="novalidate"
+                              class="needs-validation">
+                            <!-- needs-validation class will activate the Bootstrap validation-->
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Payment amount</label>
+                                <select id="cc-payment" name="cc-payment" type="text" class="form-control" required
+                                        pattern="\d*" min="50" max="150" aria-required="true" aria-invalid="false">
+                                    <option name="cc-payment" value="50">50</option>
+                                    <option name="cc-payment" value="100">100</option>
+                                    <option name="cc-payment" value="150">150</option>
+                                </select>
+                                <span class="invalid-feedback">Enter the payment amount</span>
+                                <!-- invalid feedback class will display the error message in the case of the validation error-->
+                            </div>
+                            <div class="form-group has-success">
+                                <label for="cc-name" class="control-label mb-1">Name on card</label>
+                                <input id="cc-name" name="cc-name" type="text" class="form-control cc-name" required
+                                       autocomplete="cc-name" aria-required="true" aria-invalid="false"
+                                       aria-describedby="cc-name-error">
+                                <span class="invalid-feedback">Enter the name as shown on credit card</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="cc-number" class="control-label mb-1">Card number</label>
+                                <input id="cc-number" name="cc-number" type="tel"
+                                       class="form-control cc-number identified visa" required="" pattern="[0-9]{16}">
+                                <span class="invalid-feedback">Enter a valid 16 digit card number</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="cc-exp" class="control-label mb-1">Expiration</label>
+                                        <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" required
+                                               placeholder="MM / YY" autocomplete="cc-exp">
+                                        <span class="invalid-feedback">Enter the expiration date</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="x_card_code" class="control-label mb-1">Security code</label>
+                                    <div class="input-group">
+                                        <input id="x_card_code" name="x_card_code" type="tel"
+                                               class="form-control cc-cvc" required autocomplete="off">
+                                        <span class="invalid-feedback order-last">Enter the 3-digit code on back</span>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text ">
+                                              <span class="fa fa-question-circle fa-lg" data-toggle="popover"
+                                                    data-container="body" data-html="true"
+                                                    data-title="<span class='text-dark'>Security Code<span>"
+                                                    data-content="<div class='text-center text-dark one-card'>The 3 digit code on the back of the card</div>"
+                                                    data-trigger="hover"></span>
+                                                <!--This code will show the popover text when bringing the cursor over the question sign in the Security code field -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="submit" class="btn btn-lg btn-info btn-block" id="payment-button"><i
+                                                class="fa fa-lock fa-lg"></i>&nbsp; <span class="h3">Pay</span></button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer">
+    <div id="contact-info">
+        <div class="container ">
+            <div class="row pt-3">
+                <section id="hours" class="col-sm-4">
+                    <h5>Hours:</h5>
+                    Monday-Thurs: 10:00am - 08:00pm<br>
+                    Fri: 11:00am - 4:30pm<br>
+                    Saturday and Sunday Closed
+                    <hr class="visible-xs">
+                </section>
+                <section id="address" class="col-sm-4">
+                    <h5>Venue:</h5>
+                    5 Akadeemia Road<br>
+                    Tallinn, 12611
+                    <p><span id="additional-contact-info">* You can take trolley number 3 from the city centre or bus number 11 (the stop is Keemia).</span>
+                    </p>
+                    <hr class="visible-xs">
+                </section>
+                <section id="contact" class="col-sm-4">
+                    <h5>Contact:</h5>
+                    <p>Send us <a href="mailto:abelvi@ttu.ee?cc=setana@taltech.ee&subject=CyberConf%202020">email</a> or
+                        call us via +372 5845 6759.</p>
+                    <hr class="visible-xs">
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="col-md-6 text-sm-center mb-sm-3 mt-3 float-left copyright" style="background-size: cover;">&copy;
+            Copyright CyberConf 2020
+        </div>
+        <div class="col-md-6 text-right text-sm-center float-right mt-md-3 mb-sm-3" style="background-size: cover;">
+            <div class="social-icons text-dark ">
+                <a href="">
+                    <i class="fab fa-facebook fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-instagram-square fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/tickets.js"></script>
+<script src="../js/signin.js"></script> <!-- Link to the Vanilla JS file to clear the signin input modal -->
+</body>
+</html>

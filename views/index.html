@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<?php require_once '../backend/session.php'; ?>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <!--to support IE9 or IE8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--to optimize the viewport for mobile devices -->
+    <meta name="author" content="Elvin Abbasli, Seho Tanaka">
+    <meta name="keywords" content="CyberConf, conferences, IT events, Cyber Security">
+    <meta name="no-email-collection" content="http://www.unspam.com/noemailcollection/">
+    <title>CyberConf 2020 | Home</title>
+    <link rel="icon" href="../images/logo-secondv.png" sizes="48x48" type="image/png">
+    <!-- to add the image to the title bar -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> <!-- bootstrap link -->
+    <link rel="stylesheet" type="text/css" href="../css/main.css"> <!-- main css style link -->
+    <script src="https://kit.fontawesome.com/942ca677f7.js" crossorigin="anonymous"></script>
+    <!-- link to the Fontawesome library used for icons -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+    <!-- Google Fonts Library -->
+</head>
+
+<body>
+<header> 
+    <!-- Navigation page -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+
+        <a href="index.html">
+            <img id="logo-img" src="../images/logo-secondv.png" width="30" height="30" alt="CyberConf Logo">
+        </a>
+        <a class="navbar-brand" href="index.html">
+            <h1>CyberConf 2020</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> <!-- Bootstrap toggle button used to show links when narrowing the screen size -->
+        <div class="collapse navbar-collapse ml-4" id="navbarNav">
+            <ul class="navbar-nav nav ml-xl-5">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <!-- aims to hide an element to all devices except screen readers with .sr-only.  -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+
+                <?php
+                $profile = "<li class='nav-item'><a class='nav-link' href='profile.html'>Profile</a></li>";
+                if (isset($_SESSION["HOST_SESSION"])) {
+                    echo $profile;
+                }
+                ?>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="schedules.html">Schedules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.html">Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link contact" href="contact.html">Contact</a>
+                </li>
+
+                <!-- Signin Modal Link -->
+                <?php
+                $signin = "<div>
+                        <a href='' class='btn btn-info btn-rounded ml-xl-5' data-toggle='modal'
+                            data-target='#elegantModalForm'>Sign in</a>
+                    </div>";
+
+                $logout = "  <div>
+                        <a href='../backend/logout.php' class='btn btn-info btn-rounded ml-xl-5' >Log out</a>
+                    </div>";
+
+                if (isset($_SESSION["HOST_SESSION"])) {
+                    
+                    echo $logout;
+                    
+                } else {
+                    echo $signin;
+                }
+
+                ?>
+
+            </ul>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <!--Modal content-->
+                <div class="modal-content form-elegant">
+                    <!--Modal header-->
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title w-100 text-dark font-weight-bold my-3" id="myModalLabel"><strong>Sign
+                                in</strong></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!--Modal body-->
+                    <div class="modal-body page-signin mx-4">
+                        <form class="text-dark" action="../backend/signin.php" method="post">
+                            <!-- This form helps with the user validation -->
+                            <div class="md-form mb-5 form-group">
+                                <input type="email" name="email" id="Form-email1" class="form-control validate"
+                                       required aria-required="true" aria-invalid="false">
+                                <!-- The aria-required attribute to indicate that user input is required on an element before a form can be submitted, aria-invalid is used to detect validation errors -->
+                                <label data-error="wrong" data-success="right" for="Form-email1">Your email</label>
+                            </div>
+                            <div class="md-form pb-3 form-group">
+                                <input type="password" name="password" id="Form-pass1" class="form-control validate"
+                                       required aria-required="true" aria-invalid="false">
+                                <label data-error="wrong" data-success="right" for="Form-pass1">Your
+                                    password</label>
+                            </div>
+                            <div class="text-center mb-3">
+                                <button type="submit" id="signin-button"
+                                        class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Modal footer-->
+                    <div class="modal-footer mx-7 pt-3 mb-1">
+                        <p class="font-small text-dark d-flex justify-content-end">Not a member? <a
+                                    href="register.html" class="blue-text ml-1">Register</a></p>
+                    </div>
+                </div>
+                <!--End of modal content-->
+            </div>
+        </div>
+
+    </nav>
+</header>
+<main>
+    
+    <!-- Countdown -->
+    <div class="jumbotron text-center text-light">
+        <?php if (isset($_COOKIE["_rsmg"])) {
+            echo "<div class='alert alert-success alert-dismissible fade show ' role='alert'>
+                <strong>You are Registered! Log in!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            unset($_COOKIE["_rsmg"]);
+            setcookie('_rsmg', 'b5d9a59adb0bcd20e01f77d5b40419ee', time() - 10); 
+        }
+        ?>
+        <?php if (isset($_COOKIE["_sgmg"])) {
+            echo "<div class='alert alert-danger alert-dismissible fade show ' role='alert'>
+                <strong>Check your email or password!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            unset($_COOKIE["_sgmg"]);
+            setcookie('_sgmg', 'a7f426b612fae7717f926ac6b9d0bf94', time() - 10); 
+        }
+        ?>
+        <h2 class="mt-5 mb-5">Welcome to CyberConf 2020!</h2>
+        <h3>Conference will start in</h3>
+        <div id="countdown-div" class="container mt-2">
+            <div>
+                <span class="days" id="day"></span>
+                <div class="smalltext">Days</div>
+            </div>
+            <div>
+                <span class="hours" id="hour"></span>
+                <div class="smalltext">Hours</div>
+            </div>
+            <div>
+                <span class="minutes" id="minute"></span>
+                <div class="smalltext">Minutes</div>
+            </div>
+            <div>
+                <span class="seconds" id="second"></span>
+                <div class="smalltext">Seconds</div>
+            </div>
+        </div>
+        <p id="final-text"></p>
+    </div>
+</main>
+<!-- Footer part of the page -->
+<footer class="page-footer">
+    <div id="contact-info">
+        <div class="container ">
+            <div class="row pt-3">
+                <section id="hours" class="col-sm-4">
+                    <h5>Hours:</h5>
+                    Monday-Thurs: 10:00am - 08:00pm<br>
+                    Fri: 11:00am - 4:30pm<br>
+                    Saturday and Sunday Closed
+                    <hr class="visible-xs">
+                </section>
+                <section id="address" class="col-sm-4">
+                    <h5>Venue:</h5>
+                    5 Akadeemia Road<br>
+                    Tallinn, 12611
+                    <p><span id="additional-contact-info">* You can take trolley number 3 from the city centre or
+                                bus number 11 (the stop is Keemia).</span>
+                    </p>
+                    <hr class="visible-xs">
+                    <!--horizontal rule will be visible in extra small sizes -->
+                </section>
+                <section id="contact" class="col-sm-4">
+                    <h5>Contact:</h5>
+                    <p>Send us <a
+                                href="mailto:abelvi@ttu.ee?cc=setana@taltech.ee&subject=CyberConf%202020">email</a> or
+                        call us via +372 5845 6759.</p>
+                    <hr class="visible-xs">
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="col-md-6 text-sm-center mb-sm-3 mt-3 float-left copyright" style="background-size: cover;">
+            &copy;
+            Copyright CyberConf 2020
+        </div>
+        <div class="col-md-6 text-right text-sm-center float-right mt-md-3 mb-sm-3" style="background-size: cover;">
+            <div class="social-icons text-dark ">
+                <!--Fontawesome social links used to display icons -->
+                <a href="">
+                    <i class="fab fa-facebook fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-instagram-square fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<!--Link to the Bootstrap jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script> <!-- Link to Popper, the tooltip and positioning engine -->
+<script src="../js/bootstrap.min.js"></script> <!-- Link to the Bootstrap JS file -->
+<script src="../js/index.js"></script> <!-- Link to the Vanilla JS file -->
+<script src="../js/signin.js"></script> <!-- Link to the Vanilla JS file to clear the signin input modal -->
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+/* Import general styles applicable to all pages from the main.css*/
+@import "main.css";
+
+body {
+    color: white;
+    background: url('../images/audience.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.card-deck {
+    color: black;
+}

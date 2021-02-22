@@ -1,0 +1,64 @@
+/* Import general styles applicable to all pages from the main.css*/
+@import "main.css";
+
+body {
+    color: white;
+    background: url('../images/audience.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.card-deck {
+    color: black;
+}
+
+.card-header:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/*Styles for pay button in the payment modal*/
+.modal-footer {
+    width: 100%;
+    margin: 0 auto; /*to place the pay button in the center*/
+}
+
+h2 {
+    font-size: 3em;
+}
+
+/* Style to increase the height of the ticket card sizes for large devices (desktops, 992px and up). */
+@media (min-width: 992px) {
+    .card-deck {
+        height: 30rem;
+    }
+
+    .tickets {
+        height: 44rem;
+    }
+
+    .tickets h1 {
+        font-size: 5rem;
+    }
+
+    .tickets .card h2 {
+        font-size: 4rem;
+    }
+
+    .tickets .card p {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .tickets .btn-outline-primary {
+        font-size: 2.5rem;
+    }
+
+    .card-header h4 {
+        font-size: 2.5rem;
+    }
+}

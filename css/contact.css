@@ -1,0 +1,30 @@
+/* Import general styles applicable to all pages from the main.css*/
+@import "main.css";
+
+body {
+    background: url('../images/audience.jpg') no-repeat center center; /*to place the background image on the body in the center */
+    background-size: cover;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 25em;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+}
+
+.card-img-top {
+    height: 25em;
+}
+
+.card-body {
+    height: 8em;
+}
+
+/*Media queries*/
+
+@media (max-width: 768px) {
+    .venue-details {
+        width:80%;
+        margin: 1em;
+    }
+}

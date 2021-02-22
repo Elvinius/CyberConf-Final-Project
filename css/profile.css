@@ -1,0 +1,19 @@
+/* Import general styles applicable to all pages from the main.css*/
+@import "main.css";
+
+h1 {
+    color: white;
+}
+
+body {
+    background: url('../images/audience.jpg') no-repeat center center; /*to place the background image on the body in the center */
+    background-size: cover;
+}
+
+div.bootstrap {
+    color: black;
+}
+
+.list-group-item {
+    font-size: 1.7rem;
+}

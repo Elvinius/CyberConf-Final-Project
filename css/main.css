@@ -1,0 +1,287 @@
+/*General styles */
+
+* {
+    box-sizing: border-box;
+}
+
+/*to prevent the html and body to have extra empty spaces on the right and left part of the page*/
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+/*Header and navigation styles*/
+
+#logo-img {
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px 10px 0;
+}
+
+.navbar {
+    background-color: #85FFBD;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* to make the navbar background gradient; style is available through https://cssgradient.io/gradient-backgrounds/ */
+    background-size: cover;
+}
+
+.navbar-brand {
+    padding-top: 10px;
+}
+
+.navbar-brand h1 {
+    color: #4169E1;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #222;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: .75;
+}
+
+.navbar-brand a:hover, .navbar-brand a:focus {
+    text-decoration: none;
+}
+
+.navbar-toggler {
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    border: none;
+}
+
+.navbar-toggler:focus {
+    outline: none; /* to erase the border color when bringing the cursor over the toggle button */
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: peru;
+}
+
+.navbar-nav .active > .nav-link {
+    color: peru !important; /*to make the active item color different from others. With important we override the bootstrap style*/
+}
+
+.nav-item {
+    font-weight: bold;
+}
+
+.jumbotron h2 {
+    font-size: 3rem;
+}
+
+.jumbotron {
+    background: url('../images/audience.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 0;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+}
+
+/*Login modal styles */
+
+.form-elegant .font-small {
+    font-size: 0.8rem;
+}
+
+/* Below code gives the shadow effects to the Signin button */
+.form-elegant .z-depth-1a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+}
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+}
+
+.form-elegant .modal-header {
+    border-bottom: none;
+}
+
+.modal-dialog .form-elegant .btn .fab {
+    color: #2196f3 !important;
+}
+
+.form-elegant .modal-body, .form-elegant .modal-footer {
+    font-weight: 400;
+}
+
+.blue-gradient {
+    background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+    color: #fff;
+    border: none;
+}
+
+/*Countdown style*/
+
+#countdown-div {
+    display: inline-block;
+    font-size: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#countdown-div > div {
+    padding: 10px;
+    border-radius: 3px;
+    display: inline-block;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); /*to give the gradient background to the countdown elements */
+}
+
+#countdown-div > span {
+    padding: 15px;
+    border-radius: 3px;
+    display: inline-block;
+    background-color: #00816A !important;
+}
+
+.smalltext {
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+}
+
+/*Footer styles*/
+
+#contact-info {
+    background-color: #000;
+    position: relative;
+}
+
+.page-footer {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* to give the color and hover functionality to the mail link */
+a[href^="mailto"] {
+    color: peru;
+}
+
+a[href^="mailto"]:hover {
+    color: #ce0606;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#additional-contact-info {
+    font-style: italic;
+}
+
+/*This will achieve the change in the style of hr tag.*/
+section > hr {
+    height: 12px;
+    font-weight: 700;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(255, 255, 255, 0.5);
+}
+
+.copyright {
+    color: navy;
+}
+
+.social-icons {
+    display: inline-block;
+}
+
+/* we add the clearfix to fix the problem of elements flowing after the floating element */
+div.clearfix {
+    background-color: white;
+}
+
+.clearfix:after {
+    content: "";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+div.alert {
+    width:50%;
+    margin:0 auto;
+}
+
+/*Media queries depending on the screen size
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Large devices (desktops, 992px and up). We want to add / sign after the navigation tags when the screen size is medium */
+@media (min-width: 992px) {
+    .nav-link::after {
+        content: "/";
+        color: peru;
+        padding-left: 0.75rem;
+    }
+
+    /* This code will help us add the / sign after the navigation items */
+    .nav-item .contact::after {
+        content: none;
+    }
+
+    /* after the last item we don't want the sign, therefore, we set the content as none */
+
+}
+
+@media (min-width: 1200px) {
+    a.btn-info {
+        margin-left: 7em !important; /*By declaring important, we force the implemetation of 7em left margin between navigation link and signin button */
+    }
+
+    /*Change the countdown size in the bigger screens*/
+    #countdown-div {
+        font-size: 4rem;
+    }
+
+    .smalltext {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .jumbotron h2 {
+        font-size: 5rem;
+    }
+}
+
+/* The below code will decrease the font size of the navbar brand and h1 tag in small devices */
+@media (max-width: 600px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-brand h1 {
+        font-size: 1em;
+    }
+}
+
+ /*Extra small devices (portrait phones, less than 576px)*/
+/*To properly align the copyright area in small devices use following*/
+@media (max-width: 575.98px) {
+    div.copyright {
+        width: 70%;
+        margin-top:0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    div.clearfix div.float-right {
+        width: 30%;
+        margin-top:0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+}

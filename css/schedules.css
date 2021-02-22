@@ -1,0 +1,25 @@
+/* Import general styles applicable to all pages from the main.css*/
+@import "main.css";
+
+body {
+    color: white;
+    background: url('../images/audience.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+table {
+    border-collapse: collapse;
+
+}
+
+table th {
+    border-right: 1px solid #dee2e6;
+    text-align: center;
+    color: peru;
+
+}
+
+.jumbotron {
+    color: black;
+    background: white;
+}
